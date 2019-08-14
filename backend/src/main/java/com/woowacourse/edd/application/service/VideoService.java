@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -17,6 +18,7 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class VideoService {
 
+    private static final String CREATE_DATE = "createDate";
     private final VideoRepository videoRepository;
     private final VideoConverter videoConverter;
 
@@ -27,7 +29,7 @@ public class VideoService {
     }
 
     public List<VideoPreviewResponse> findVideosByDate(int page, int limit) {
-        PageRequest pageRequest = PageRequest.of(page, limit, Sort.by("createDate").descending());
+        PageRequest pageRequest = PageRequest.of(page, limit, Sort.by(CREATE_DATE).descending());
         Page<Video> foundVideos = videoRepository.findAll(pageRequest);
 
         return foundVideos.getContent().stream()
@@ -36,6 +38,6 @@ public class VideoService {
     }
 
     public List<VideoPreviewResponse> findVideosByViewNumbers(int page, int limit) {
-        return null;
+        return new ArrayList<>();
     }
 }
