@@ -1,22 +1,21 @@
 spring:
-  h2:
-    console:
+  devtools:
+    livereload:
       enabled: true
-      path: /h2-console
-  datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: 1234
+    restart:
+      enabled: true
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
     properties:
       hibernate:
         format_sql: true
-  devtools:
-    livereload:
-      enabled: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/blog?characterEncoding=UTF-8&serverTimezone=UTC
+    username: heebong
+    password: 1234
 
 debug: true
 trace: false
