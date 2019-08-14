@@ -1,10 +1,10 @@
-package com.woowacourse.edd.service;
+package com.woowacourse.edd.application.service;
 
+import com.woowacourse.edd.application.converter.VideoConverter;
+import com.woowacourse.edd.application.dto.VideoPreviewResponse;
 import com.woowacourse.edd.domain.Video;
 import com.woowacourse.edd.repository.VideoRepository;
-import com.woowacourse.edd.service.dto.VideoInfoResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -17,22 +17,25 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class VideoService {
 
-    private VideoRepository videoRepository;
+    private final VideoRepository videoRepository;
+    private final VideoConverter videoConverter;
 
-    public VideoService(VideoRepository videoRepository) {
+    @Autowired
+    public VideoService(VideoRepository videoRepository, VideoConverter videoConverter) {
         this.videoRepository = videoRepository;
+        this.videoConverter = videoConverter;
     }
 
-    public List<VideoInfoResponse> findVideosByDate(int page, int limit) {
+    public List<VideoPreviewResponse> findVideosByDate(int page, int limit) {
         PageRequest pageRequest = PageRequest.of(page, limit, Sort.by("createDate").descending());
         Page<Video> foundVideos = videoRepository.findAll(pageRequest);
 
         return foundVideos.getContent().stream()
-                .map(VideoInfoResponse::of)
+                .map(videoConverter::toPreviewResponse)
                 .collect(toList());
     }
 
-    public List<VideoInfoResponse> findVideosByViewNumbers(int page, int limit) {
+    public List<VideoPreviewResponse> findVideosByViewNumbers(int page, int limit) {
         return null;
     }
 }

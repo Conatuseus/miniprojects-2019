@@ -10,7 +10,7 @@ import java.util.Objects;
 @Embeddable
 public class Contents {
 
-    @Column
+    @Column(nullable = false)
     @Lob
     private String contents;
 

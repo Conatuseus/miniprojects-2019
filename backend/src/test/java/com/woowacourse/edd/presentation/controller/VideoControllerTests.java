@@ -1,4 +1,4 @@
-package com.woowacourse.edd.controller;
+package com.woowacourse.edd.presentation.controller;
 
 import com.woowacourse.edd.EddApplicationTests;
 import org.junit.jupiter.api.Test;
