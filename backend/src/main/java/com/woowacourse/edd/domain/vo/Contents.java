@@ -1,6 +1,6 @@
 package com.woowacourse.edd.domain.vo;
 
-import com.woowacourse.edd.exceptions.InvalidTitleException;
+import com.woowacourse.edd.exceptions.InvalidContentsException;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -18,7 +18,14 @@ public class Contents {
     }
 
     public Contents(String contents) {
+        checkContents(contents);
         this.contents = contents;
+    }
+
+    private void checkContents(String contents) {
+        if (Objects.isNull(contents)) {
+            throw new InvalidContentsException();
+        }
     }
 
     public String getContents() {
