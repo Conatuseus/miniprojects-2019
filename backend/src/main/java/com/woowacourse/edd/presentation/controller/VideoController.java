@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/videos")
 public class VideoController {
+
     private static final String DATE = "date";
     private final VideoService videoService;
 
