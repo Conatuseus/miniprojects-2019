@@ -1,5 +1,7 @@
 package com.woowacourse.edd.domain;
 
+import com.woowacourse.edd.domain.vo.Email;
+import com.woowacourse.edd.domain.vo.Password;
 import com.woowacourse.edd.domain.vo.UserName;
 
 import javax.persistence.*;
@@ -20,4 +22,28 @@ public class User {
     @Embedded
     private Password password;
 
+    private User() {
+    }
+
+    public User(UserName userName, Email email, Password password) {
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public UserName getUserName() {
+        return userName;
+    }
+
+    public Email getEmail() {
+        return email;
+    }
+
+    public Password getPassword() {
+        return password;
+    }
 }

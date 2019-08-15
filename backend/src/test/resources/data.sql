@@ -1,0 +1,7 @@
+INSERT INTO video(youtubeId,title,contents) VALUES ('0','title','contents')
+INSERT INTO video(youtubeId,title,contents) VALUES ('1','title','contents')
+INSERT INTO video(youtubeId,title,contents) VALUES ('2','title','contents')
+INSERT INTO video(youtubeId,title,contents) VALUES ('3','title','contents')
+INSERT INTO video(youtubeId,title,contents) VALUES ('4','title','contents')
+INSERT INTO video(youtubeId,title,contents) VALUES ('5','title','contents')
+INSERT INTO video(youtubeId,title,contents) VALUES ('6','title','contents')
