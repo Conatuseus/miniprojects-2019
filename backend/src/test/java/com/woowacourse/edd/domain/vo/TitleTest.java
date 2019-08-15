@@ -6,20 +6,24 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TitleTest {
-
+class TitleTest {
     @Test
-    void 올바른_title_검사() {
-        assertDoesNotThrow(() -> new Title("abcd"));
+    void check_empty_test() {
+        assertThrows(InvalidTitleException.class, () -> new Title(""));
     }
 
     @Test
-    void title이_null_검사() {
+    void check_null_test() {
         assertThrows(InvalidTitleException.class, () -> new Title(null));
     }
 
     @Test
-    void title이_공백_검사() {
-        assertThrows(InvalidTitleException.class, () -> new Title(""));
+    void check_blank_test() {
+        assertThrows(InvalidTitleException.class, () -> new Title(" "));
+    }
+
+    @Test
+    void valid_title_test() {
+        assertDoesNotThrow(() -> new Title("abcd"));
     }
 }

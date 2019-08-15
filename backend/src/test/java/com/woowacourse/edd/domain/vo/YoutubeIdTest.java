@@ -6,20 +6,25 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class YoutubeIdTest {
+class YoutubeIdTest {
 
     @Test
-    void 올바른_youtube_id_검사(){
-        assertDoesNotThrow(()-> new YoutubeId("abc"));
+    void valid_id_test() {
+        assertDoesNotThrow(() -> new YoutubeId("abc"));
     }
 
     @Test
-    void youtubeId가_null_검사() {
+    void create_empty_test() {
+        assertThrows(InvalidYoutubeIdException.class, () -> new YoutubeId(""));
+    }
+
+    @Test
+    void create_null_test() {
         assertThrows(InvalidYoutubeIdException.class, () -> new YoutubeId(null));
     }
 
     @Test
-    void youtubeId가_공백_검사() {
-        assertThrows(InvalidYoutubeIdException.class, () -> new YoutubeId(""));
+    void create_blank_test() {
+        assertThrows(InvalidYoutubeIdException.class, () -> new YoutubeId(" "));
     }
 }

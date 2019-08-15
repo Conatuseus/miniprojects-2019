@@ -23,7 +23,7 @@ public class Contents {
     }
 
     private void checkContents(String contents) {
-        if (Objects.isNull(contents)) {
+        if (Objects.isNull(contents) || contents.trim().isEmpty()) {
             throw new InvalidContentsException();
         }
     }
