@@ -43,11 +43,6 @@ class VideoServiceTest {
         assertThat(service.save(new VideoSaveRequestDto("1234", "title", "contents"))).isEqualTo(videoResponse);
     }
 
-    @Test
-    void find_Videos_by_date() {
-
-    }
-
     private String getFormedDate() {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHH");
