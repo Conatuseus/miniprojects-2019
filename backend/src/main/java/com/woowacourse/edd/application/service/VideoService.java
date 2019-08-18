@@ -1,7 +1,7 @@
 package com.woowacourse.edd.application.service;
 
 import com.woowacourse.edd.application.converter.VideoConverter;
-import com.woowacourse.edd.application.dto.VideoPreviewResponse;
+import com.woowacourse.edd.application.response.VideoPreviewResponse;
 import com.woowacourse.edd.application.dto.VideoSaveRequestDto;
 import com.woowacourse.edd.application.response.VideoResponse;
 import com.woowacourse.edd.domain.Video;
