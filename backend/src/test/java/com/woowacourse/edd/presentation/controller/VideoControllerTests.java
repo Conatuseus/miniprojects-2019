@@ -92,7 +92,7 @@ public class VideoControllerTests extends EddApplicationTests {
     }
 
     private StatusAssertions findVideos(int page, int size, String sort, String direction) {
-        return executeGet(VIDEOS_URI + "?page"+page+"&size="+size+"&sort="+sort+","+direction)
+        return executeGet(VIDEOS_URI + "?page="+page+"&size="+size+"&sort="+sort+","+direction)
                 .exchange()
                 .expectStatus();
     }

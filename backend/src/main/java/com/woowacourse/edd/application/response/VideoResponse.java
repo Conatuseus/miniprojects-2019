@@ -43,11 +43,11 @@ public class VideoResponse {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         VideoResponse that = (VideoResponse) o;
-        return id == that.id &&
-                Objects.equals(youtubeId, that.youtubeId) &&
-                Objects.equals(title, that.title) &&
-                Objects.equals(contents, that.contents) &&
-                Objects.equals(createDate, that.createDate);
+        return id.equals(that.id) &&
+            Objects.equals(youtubeId, that.youtubeId) &&
+            Objects.equals(title, that.title) &&
+            Objects.equals(contents, that.contents) &&
+            Objects.equals(createDate, that.createDate);
     }
 
     @Override
