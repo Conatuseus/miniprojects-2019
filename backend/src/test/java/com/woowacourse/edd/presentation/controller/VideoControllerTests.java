@@ -41,19 +41,14 @@ public class VideoControllerTests extends EddApplicationTests {
 
     @Test
     void find_videos_by_date() {
-        findVideos("date").isOk();
-    }
-
-    @Test
-    void find_videos_by_views() {
-        assertFailBadRequest(findVideos("view"), "지원되지 않는 필터입니다");
+        findVideos(0,5,"createDate","DESC").isOk();
     }
 
     @Test
     void save() {
         VideoSaveRequestDto videoSaveRequestDto = new VideoSaveRequestDto(DEFAULT_VIDEO_YOUTUBEID, DEFAULT_VIDEO_TITLE, DEFAULT_VIDEO_CONTENTS);
 
-        saveVideo(videoSaveRequestDto).isOk()
+        saveVideo(videoSaveRequestDto).isCreated()
                 .expectBody()
                 .jsonPath("$.id").isNotEmpty()
                 .jsonPath("$.youtubeId").isEqualTo(DEFAULT_VIDEO_YOUTUBEID)
@@ -96,8 +91,8 @@ public class VideoControllerTests extends EddApplicationTests {
                 .expectStatus();
     }
 
-    private StatusAssertions findVideos(String filter) {
-        return executeGet(VIDEOS_URI + "?filter=" + filter + "&page=0&limit=5")
+    private StatusAssertions findVideos(int page, int size, String sort, String direction) {
+        return executeGet(VIDEOS_URI + "?page"+page+"&size="+size+"&sort="+sort+","+direction)
                 .exchange()
                 .expectStatus();
     }
