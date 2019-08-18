@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
 @RestController
 @RequestMapping("/v1/videos")
 public class VideoController {
@@ -35,6 +37,6 @@ public class VideoController {
     @PostMapping
     public ResponseEntity<VideoResponse> saveVideo(@RequestBody VideoSaveRequestDto requestDto) {
         VideoResponse response = videoService.save(requestDto);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.created(URI.create("/detail.html?id=" + response.getId())).body(response);
     }
 }
