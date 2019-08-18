@@ -41,7 +41,7 @@ public class VideoControllerTests extends EddApplicationTests {
 
     @Test
     void find_videos_by_date() {
-        findVideos(0,5,"createDate","DESC").isOk();
+        findVideos(0,6,"createDate","DESC").isOk();
     }
 
     @Test
