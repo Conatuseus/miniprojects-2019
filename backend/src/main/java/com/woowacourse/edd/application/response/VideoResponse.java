@@ -10,7 +10,7 @@ public class VideoResponse {
     private final String contents;
     private final String createDate;
 
-    public VideoResponse(long id, String youtubeId, String title, String contents, String createDate) {
+    public VideoResponse(Long id, String youtubeId, String title, String contents, String createDate) {
         this.id = id;
         this.youtubeId = youtubeId;
         this.title = title;
@@ -18,7 +18,7 @@ public class VideoResponse {
         this.createDate = createDate;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
