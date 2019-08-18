@@ -11,17 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class VideoService {
 
     private final VideoRepository videoRepository;
-    private final VideoConverter videoConverter;
+
+    private final VideoConverter videoConverter = new VideoConverter();
 
     @Autowired
-    public VideoService(VideoRepository videoRepository, VideoConverter videoConverter) {
+    public VideoService(VideoRepository videoRepository) {
         this.videoRepository = videoRepository;
-        this.videoConverter = videoConverter;
     }
 
     public VideoResponse save(VideoSaveRequestDto requestDto) {
@@ -30,10 +32,12 @@ public class VideoService {
         return videoConverter.toResponse(video);
     }
 
+    @Transactional(readOnly = true)
     public Page<VideoPreviewResponse> findByPageRequest(Pageable pageable) {
         return videoRepository.findAll(pageable).map(videoConverter::toPreviewResponse);
     }
 
+    @Transactional(readOnly = true)
     public VideoResponse find(long id) {
         Video video = findById(id);
         return videoConverter.toResponse(video);

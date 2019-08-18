@@ -7,11 +7,9 @@ import com.woowacourse.edd.domain.Video;
 import com.woowacourse.edd.domain.vo.Contents;
 import com.woowacourse.edd.domain.vo.Title;
 import com.woowacourse.edd.domain.vo.YoutubeId;
-import org.springframework.stereotype.Component;
 
 import java.time.format.DateTimeFormatter;
 
-@Component
 public class VideoConverter {
 
     public Video toEntity(VideoSaveRequestDto requestDto) {
