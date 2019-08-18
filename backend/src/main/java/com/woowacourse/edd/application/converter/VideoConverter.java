@@ -1,7 +1,7 @@
 package com.woowacourse.edd.application.converter;
 
-import com.woowacourse.edd.application.response.VideoPreviewResponse;
 import com.woowacourse.edd.application.dto.VideoSaveRequestDto;
+import com.woowacourse.edd.application.response.VideoPreviewResponse;
 import com.woowacourse.edd.application.response.VideoResponse;
 import com.woowacourse.edd.domain.Video;
 import com.woowacourse.edd.domain.vo.Contents;
@@ -21,12 +21,12 @@ public class VideoConverter {
     public VideoResponse toResponse(Video video) {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMddHH");
         String date = video.getCreateDate().format(format);
-        return new VideoResponse(video.getId(), video.getYoutubeId().getYoutubeId(), video.getTitle().getTitle(), video.getContents().getContents(), date);
+        return new VideoResponse(video.getId(), video.getYoutubeId(), video.getTitle(), video.getContents(), date);
     }
 
     public VideoPreviewResponse toPreviewResponse(Video video) {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMddHH");
         String date = video.getCreateDate().format(format);
-        return new VideoPreviewResponse(video.getId(), video.getYoutubeId().getYoutubeId(), video.getTitle().getTitle(), date);
+        return new VideoPreviewResponse(video.getId(), video.getYoutubeId(), video.getTitle(), date);
     }
 }
