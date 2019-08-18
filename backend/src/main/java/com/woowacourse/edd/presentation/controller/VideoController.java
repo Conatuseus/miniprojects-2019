@@ -28,7 +28,7 @@ public class VideoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<VideoPreviewResponse>> findVideos(Pageable pageable) {
+    public ResponseEntity<Page<VideoPreviewResponse>> findVideos(@RequestParam Pageable pageable) {
         return ResponseEntity.ok(videoService.findByPageRequest(pageable));
     }
 
