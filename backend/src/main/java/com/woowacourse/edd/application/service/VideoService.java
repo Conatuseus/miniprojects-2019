@@ -9,18 +9,12 @@ import com.woowacourse.edd.exceptions.VideoNotFoundException;
 import com.woowacourse.edd.repository.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 public class VideoService {
 
-    private static final String CREATE_DATE = "createDate";
     private final VideoRepository videoRepository;
     private final VideoConverter videoConverter;
 
@@ -36,13 +30,8 @@ public class VideoService {
         return videoConverter.toResponse(video);
     }
 
-    public List<VideoPreviewResponse> findVideosByDate(int page, int limit) {
-        PageRequest pageRequest = PageRequest.of(page, limit, Sort.by(CREATE_DATE).descending());
-        Page<Video> foundVideos = videoRepository.findAll(pageRequest);
-
-        return foundVideos.getContent().stream()
-            .map(videoConverter::toPreviewResponse)
-            .collect(toList());
+    public Page<VideoPreviewResponse> findByPageRequest(Pageable pageable) {
+        return videoRepository.findAll(pageable).map(videoConverter::toPreviewResponse);
     }
 
     public VideoResponse find(long id) {
