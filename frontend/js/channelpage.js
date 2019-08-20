@@ -39,7 +39,7 @@ changeUpdateState = function (flags) {
         emailInput.classList.add('d-none')
 
         document.querySelector('#btn-submit').classList.add('d-none')
-        document.querySelector('#btn-update').innerHTML = '<i class="ti-close"></i>'
+        document.querySelector('#btn-update').innerHTML = '<i class="ti-pencil"></i>'
     }
     return !flags
 }
