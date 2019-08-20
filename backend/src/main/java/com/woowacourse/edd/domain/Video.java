@@ -60,6 +60,15 @@ public class Video {
         }
     }
 
+    public void update(String youtubeId, String title, String contents) {
+        checkYoutubeId(youtubeId);
+        checkTitle(title);
+        checkContents(contents);
+        this.youtubeId = youtubeId;
+        this.title = title;
+        this.contents = contents;
+    }
+
     public Long getId() {
         return id;
     }
@@ -78,15 +87,6 @@ public class Video {
 
     public LocalDateTime getCreateDate() {
         return createDate;
-    }
-
-    public void update(String youtubeId, String title, String contents) {
-        checkYoutubeId(youtubeId);
-        checkTitle(title);
-        checkContents(contents);
-        this.youtubeId = youtubeId;
-        this.title = title;
-        this.contents = contents;
     }
 
     @Override
