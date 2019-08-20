@@ -7,11 +7,14 @@ import com.woowacourse.edd.utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.web.reactive.server.EntityExchangeResult;
 import org.springframework.test.web.reactive.server.StatusAssertions;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class VideoControllerTests extends EddApplicationTests {
 
@@ -133,11 +136,19 @@ public class VideoControllerTests extends EddApplicationTests {
 
     @Test
     void delete() {
-        VideoTestResponse videoTestResponse = saveVideo(new VideoSaveRequestDto(DEFAULT_VIDEO_YOUTUBEID, DEFAULT_VIDEO_TITLE, DEFAULT_VIDEO_CONTENTS)).isCreated()
-            .expectBody(VideoTestResponse.class)
-            .returnResult().getResponseBody();
+        EntityExchangeResult<byte[]> res = saveVideo(new VideoSaveRequestDto(DEFAULT_VIDEO_YOUTUBEID, DEFAULT_VIDEO_TITLE, DEFAULT_VIDEO_CONTENTS))
+            .isCreated()
+            .expectBody()
+            .returnResult();
 
-        deleteVideo(videoTestResponse.getId()).isNoContent();
+        String[] id = res.getResponseHeaders().getLocation().toASCIIString().split("/");
+
+        deleteVideo(Long.valueOf(id[id.length -1])).isNoContent();
+    }
+
+    @Test
+    void delete_invalid_id() {
+        assertFailNotFound(deleteVideo(100L), "그런 비디오는 존재하지 않아!");
     }
 
     private StatusAssertions findVideo(String uri) {

@@ -40,7 +40,7 @@ public class VideoController {
     @PostMapping
     public ResponseEntity<VideoResponse> saveVideo(@RequestBody VideoSaveRequestDto requestDto) {
         VideoResponse response = videoService.save(requestDto);
-        return ResponseEntity.created(URI.create("/v1/videos")).body(response);
+        return ResponseEntity.created(URI.create("/v1/videos/" + response.getId())).body(response);
     }
 
     @PutMapping("/{id}")
