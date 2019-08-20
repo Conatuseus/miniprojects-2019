@@ -51,8 +51,8 @@ const Api = function () {
         })
     }
     
-    const requestVideos = (filter) => {
-        return requestWithoutBody(`${baseUrl}/v1/videos?page=0&size=6&sort=${filter},DESC`,'GET')
+    const requestVideos = (page, size, sort) => {
+        return requestWithoutBody(`${baseUrl}/v1/videos?page=${page}&size=${size}&sort=${sort},DESC`,'GET')
     }
 
     const requestVideo = (videoId) => {
