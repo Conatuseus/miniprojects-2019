@@ -1,8 +1,10 @@
 package com.woowacourse.edd.presentation.controller;
 
 import com.woowacourse.edd.application.dto.VideoSaveRequestDto;
+import com.woowacourse.edd.application.dto.VideoUpdateRequestDto;
 import com.woowacourse.edd.application.response.VideoPreviewResponse;
 import com.woowacourse.edd.application.response.VideoResponse;
+import com.woowacourse.edd.application.response.VideoUpdateResponse;
 import com.woowacourse.edd.application.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,5 +39,13 @@ public class VideoController {
     public ResponseEntity<VideoResponse> saveVideo(@RequestBody VideoSaveRequestDto requestDto) {
         VideoResponse response = videoService.save(requestDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity updateVideo(@PathVariable Long id, @RequestBody VideoUpdateRequestDto requestDto) {
+        VideoUpdateResponse response = videoService.update(id, requestDto);
+        return ResponseEntity.status(HttpStatus.OK)
+            .header("location", "/v1/videos/" + id)
+            .body(response);
     }
 }
