@@ -6,7 +6,7 @@ public class VideoSaveRequestDto {
     private String title;
     private String contents;
 
-    public VideoSaveRequestDto() {
+    private VideoSaveRequestDto() {
     }
 
     public VideoSaveRequestDto(String youtubeId, String title, String contents) {

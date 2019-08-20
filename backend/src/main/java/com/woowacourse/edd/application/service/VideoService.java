@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class VideoService {
 
     private final VideoRepository videoRepository;
-
     private final VideoConverter videoConverter = new VideoConverter();
 
     @Autowired

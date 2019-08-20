@@ -14,8 +14,6 @@ import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 public class VideoControllerTests extends EddApplicationTests {
 
     @Autowired
@@ -143,7 +141,7 @@ public class VideoControllerTests extends EddApplicationTests {
 
         String[] id = res.getResponseHeaders().getLocation().toASCIIString().split("/");
 
-        deleteVideo(Long.valueOf(id[id.length -1])).isNoContent();
+        deleteVideo(Long.valueOf(id[id.length - 1])).isNoContent();
     }
 
     @Test
