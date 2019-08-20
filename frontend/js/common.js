@@ -26,6 +26,10 @@ const wootubeCtx = {
             }
         }
     },
+    constants : {
+        videoPageSize : 6,
+        videoChannelPageSize : 18
+    }
 }
 
 const Api = function () {
@@ -35,7 +39,7 @@ const Api = function () {
     }
 
     const baseUrl = '/api'
-    
+
     const request = (url, method, body) => {
         return fetch(url, {
             method: method,

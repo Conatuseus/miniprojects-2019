@@ -16,7 +16,7 @@ function addVideoDetailTemplate(data) {
             <div class="col-md-2">
             <a href="/video-channel.html">
                 <img class="banner-owner-img img-circle relative"
-                src="./images/default/eastjun_big.jpg" alt="">
+                    src="./images/default/eastjun_big.jpg" alt="">
              </a>
             </div>
             <div class="col-md-10">

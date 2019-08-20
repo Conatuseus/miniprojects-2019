@@ -9,7 +9,7 @@ loadVideoCards = function (page, size, sort) {
         .then(response => response.json())
         .then(json => addVideoCardTemplates(json.content, 'dateVideoCard'))
 }
-loadVideoCards(0, 18, 'createDate')
+loadVideoCards(0, wootubeCtx.constants.videoChannelPageSize, 'createDate')
 
 document.querySelector('#btn-update').addEventListener('click', (event) => {
     channelCtx.flags.isInUpdate = changeUpdateState(channelCtx.flags.isInUpdate)
