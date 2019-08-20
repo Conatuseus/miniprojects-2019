@@ -54,4 +54,9 @@ public class VideoService {
         video.update(requestDto.getYoutubeId(), requestDto.getTitle(), requestDto.getContents());
         return videoConverter.toUpdateResponse(video);
     }
+
+    public void delete(Long id) {
+        findById(id);
+        videoRepository.deleteById(id);
+    }
 }

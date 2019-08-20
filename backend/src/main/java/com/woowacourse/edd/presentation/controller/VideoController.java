@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
 @RestController
 @RequestMapping("/v1/videos")
 public class VideoController {
@@ -38,7 +40,7 @@ public class VideoController {
     @PostMapping
     public ResponseEntity<VideoResponse> saveVideo(@RequestBody VideoSaveRequestDto requestDto) {
         VideoResponse response = videoService.save(requestDto);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return ResponseEntity.created(URI.create("/v1/videos")).body(response);
     }
 
     @PutMapping("/{id}")
@@ -47,5 +49,11 @@ public class VideoController {
         return ResponseEntity.status(HttpStatus.OK)
             .header("location", "/v1/videos/" + id)
             .body(response);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteVideo(@PathVariable Long id) {
+        videoService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

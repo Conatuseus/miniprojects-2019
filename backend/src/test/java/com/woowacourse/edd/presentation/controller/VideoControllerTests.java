@@ -131,6 +131,15 @@ public class VideoControllerTests extends EddApplicationTests {
         assertFailNotFound(updateVideo(id, videoUpdateRequestDto), "그런 비디오는 존재하지 않아!");
     }
 
+    @Test
+    void delete() {
+        VideoTestResponse videoTestResponse = saveVideo(new VideoSaveRequestDto(DEFAULT_VIDEO_YOUTUBEID, DEFAULT_VIDEO_TITLE, DEFAULT_VIDEO_CONTENTS)).isCreated()
+            .expectBody(VideoTestResponse.class)
+            .returnResult().getResponseBody();
+
+        deleteVideo(videoTestResponse.getId()).isNoContent();
+    }
+
     private StatusAssertions findVideo(String uri) {
         return executeGet(VIDEOS_URI + uri)
             .exchange()
@@ -153,6 +162,12 @@ public class VideoControllerTests extends EddApplicationTests {
     private StatusAssertions updateVideo(Long id, VideoUpdateRequestDto videoUpdateRequestDto) {
         return executePut(VIDEOS_URI + "/" + id)
             .body(Mono.just(videoUpdateRequestDto), VideoUpdateRequestDto.class)
+            .exchange()
+            .expectStatus();
+    }
+
+    private StatusAssertions deleteVideo(Long id) {
+        return executeDelete(VIDEOS_URI + "/" + id)
             .exchange()
             .expectStatus();
     }
@@ -188,5 +203,9 @@ public class VideoControllerTests extends EddApplicationTests {
 
     private WebTestClient.RequestBodySpec executePost(String uri) {
         return webTestClient.post().uri(uri);
+    }
+
+    private WebTestClient.RequestHeadersSpec executeDelete(String uri) {
+        return webTestClient.delete().uri(uri);
     }
 }
