@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
+import static com.woowacourse.edd.presentation.controller.VideoController.VIDEO_URL;
+
 @RestController
-@RequestMapping("/v1/videos")
+@RequestMapping(VIDEO_URL)
 public class VideoController {
 
+    static final String VIDEO_URL = "/v1/videos";
     private final VideoService videoService;
 
     @Autowired
@@ -40,14 +43,14 @@ public class VideoController {
     @PostMapping
     public ResponseEntity<VideoResponse> saveVideo(@RequestBody VideoSaveRequestDto requestDto) {
         VideoResponse response = videoService.save(requestDto);
-        return ResponseEntity.created(URI.create("/v1/videos/" + response.getId())).body(response);
+        return ResponseEntity.created(URI.create(VIDEO_URL + "/" + response.getId())).body(response);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity updateVideo(@PathVariable Long id, @RequestBody VideoUpdateRequestDto requestDto) {
         VideoUpdateResponse response = videoService.update(id, requestDto);
         return ResponseEntity.status(HttpStatus.OK)
-            .header("location", "/v1/videos/" + id)
+            .header("location", VIDEO_URL + "/" + id)
             .body(response);
     }
 
