@@ -42,11 +42,11 @@ public class User {
     private User() {
     }
 
-    public User(String name, String email, String password, boolean isDeleted) {
+    public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.isDeleted = isDeleted;
+        this.isDeleted = false;
     }
 
     public void update(String name, String email, String password) {
