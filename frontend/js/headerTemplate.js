@@ -23,7 +23,7 @@ const addHeader = function (headerElement) {
                 </li>
             </ul>
             <ul class="nav-right padding-8">
-                <li class="">
+                <li>
                     <a href="video-create.html" class="pointer">
                         <i class="material-icons">video_call</i>
                     </a>
@@ -61,7 +61,7 @@ const addHeader = function (headerElement) {
             </ul>
             <ul class="nav-right padding-8">
 
-                <li class="">
+                <li>
                     <a href="/login.html" class="pointer">
                         <i class="material-icons">video_call</i>
                     </a>
