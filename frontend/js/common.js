@@ -89,6 +89,10 @@ const Api = function () {
         return request(`${baseUrl}/v1/login`, 'POST', dataBody)
     }
 
+    const postLogout = () => {
+        return request(`${baseUrl}/v1/logout`, 'POST')
+    }
+
     const signup = (dataBody) => {
         return request(`${baseUrl}/v1/users`, 'POST', dataBody)
     }
@@ -116,6 +120,7 @@ const Api = function () {
         updateVideo,
         deleteVideo,
         postLogin,
+        postLogout,
         signup,
         requestUser,
         updateUser,
