@@ -92,7 +92,6 @@ const addHeader = function (headerElement) {
         api.postLogout()
             .then(res => {
                 window.location.reload();
-
             })
     }
 
@@ -108,7 +107,6 @@ const addHeader = function (headerElement) {
             }
         })
         .catch(res => {
-
             headerElement.insertAdjacentHTML('afterbegin', notSignedInHeaderTemplate)
             setHeaderEvent();
         })
