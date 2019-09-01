@@ -13,12 +13,14 @@ public class UserSaveRequestDto {
     public static final String INVALID_PASSWORD_CONFIRM_MESSAGE = "비밀번호 확인이 일치하지 않습니다.";
 
     public static final String USER_NAME_PATTERN = "^([A-Za-z가-힣]{2,16})$";
+    public static final String USER_EMAIL_PATTERN = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
     public static final String USER_PASSWORD_PATTERN = "^.*(?=^.{8,}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$";
 
     @Pattern(regexp = USER_NAME_PATTERN, message = INVALID_NAME_MESSAGE)
     private String name;
 
     @Email(message = INVALID_EMAIL_MESSAGE)
+    @Pattern(regexp = USER_EMAIL_PATTERN, message = INVALID_EMAIL_MESSAGE)
     @Size(min = 1, message = INVALID_EMAIL_MESSAGE)
     private String email;
 

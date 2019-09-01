@@ -5,6 +5,7 @@ import javax.validation.constraints.Pattern;
 
 import static com.woowacourse.edd.application.dto.UserSaveRequestDto.INVALID_EMAIL_MESSAGE;
 import static com.woowacourse.edd.application.dto.UserSaveRequestDto.INVALID_NAME_MESSAGE;
+import static com.woowacourse.edd.application.dto.UserSaveRequestDto.USER_EMAIL_PATTERN;
 import static com.woowacourse.edd.application.dto.UserSaveRequestDto.USER_NAME_PATTERN;
 
 public class UserUpdateRequestDto {
@@ -13,6 +14,7 @@ public class UserUpdateRequestDto {
     private String name;
 
     @Email(message = INVALID_EMAIL_MESSAGE)
+    @Pattern(regexp = USER_EMAIL_PATTERN, message = INVALID_EMAIL_MESSAGE)
     private String email;
 
     private UserUpdateRequestDto() {
