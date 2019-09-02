@@ -5,7 +5,7 @@ const wootubeCtx = {
         getUrlParams: function (name, url) {
             if (!url) url = window.location.href;
             name = name.replace(/[\[\]]/g, '\\$&');
-            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
                 results = regex.exec(url);
             if (!results) return null;
             if (!results[2]) return '';
@@ -16,9 +16,9 @@ const wootubeCtx = {
             return localResponseDate.fromNow();
         }
     },
-    constants : {
-        videoPageSize : 6,
-        videoChannelPageSize : 18
+    constants: {
+        videoPageSize: 6,
+        videoChannelPageSize: 18
     }
 }
 
@@ -46,17 +46,17 @@ const Api = function () {
             credentials: 'include'
         })
     }
-    
+
     const requestVideos = (page, size, sort) => {
-        return requestWithoutBody(`${baseUrl}/v1/videos?page=${page}&size=${size}&sort=${sort},DESC`,'GET')
+        return requestWithoutBody(`${baseUrl}/v1/videos?page=${page}&size=${size}&sort=${sort},DESC`, 'GET')
     }
 
     const requestMyChannelVideos = (userId) => {
-        return requestWithoutBody(`${baseUrl}/v1/videos/creators/${userId}`,'GET')
+        return requestWithoutBody(`${baseUrl}/v1/videos/creators/${userId}`, 'GET')
     }
 
     const requestVideo = (videoId) => {
-        return requestWithoutBody(`${baseUrl}/v1/videos/${videoId}`,'GET')
+        return requestWithoutBody(`${baseUrl}/v1/videos/${videoId}`, 'GET')
     }
 
     const saveVideo = (dataBody) => {
@@ -98,7 +98,7 @@ const Api = function () {
     const retrieveComments = (videoId) => {
         return requestWithoutBody(`${baseUrl}/v1/videos/${videoId}/comments`, 'GET')
     }
-    
+
     const requestUser = (id) => {
         return request(`${baseUrl}/v1/users/${id}`, 'GET');
     }
