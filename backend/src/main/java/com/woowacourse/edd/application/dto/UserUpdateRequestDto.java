@@ -1,6 +1,5 @@
 package com.woowacourse.edd.application.dto;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -17,7 +16,6 @@ public class UserUpdateRequestDto {
     @Pattern(regexp = USER_NAME_PATTERN, message = INVALID_NAME_MESSAGE)
     private String name;
 
-//    @Email(message = INVALID_EMAIL_FORM_MESSAGE)
     @Pattern(regexp = USER_EMAIL_PATTERN, message = INVALID_EMAIL_FORM_MESSAGE)
     @Size(min = EMAIL_LENGTH_MIN, max = EMAIL_LENGTH_MAX, message = INVALID_EMAIL_SIZE_MESSAGE)
     private String email;
